@@ -1,0 +1,3 @@
+[submodule "dependencies/libP2PNetwork"]
+	path = dependencies/libP2PNetwork
+	url = https://github.com/OptimisticCoder/libP2PNetwork
