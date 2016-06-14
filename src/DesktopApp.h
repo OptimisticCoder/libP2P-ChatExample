@@ -2,7 +2,6 @@
 #define __DESKTOP_APP_H_INCLUDED__
 
 #include <boost/asio.hpp>
-#include <wx/wxprec.h>
 #include <wx/wx.h>
 
 #include "DesktopFormOverriden.h"

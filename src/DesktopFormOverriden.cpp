@@ -17,11 +17,15 @@ void DesktopFormOveridden::Init()
 	P2PNetwork::p2p_host hostManager;
 	std::vector<P2PNetwork::p2p_host> hosts = hostManager.LoadAll("hosts", vec, 6453);
 
-	for (auto it = hosts.begin(); it != hosts.end(); ++it)
+	for (std::vector<P2PNetwork::p2p_host>::iterator it = hosts.begin(); it != hosts.end(); ++it)
 	{
 		txtMain->AppendText(it->Ip);
 		txtMain->AppendText(":");
-		txtMain->AppendText(std::to_string(it->Port));
+
+		std::stringstream ss;
+		ss << it->Port;
+
+		txtMain->AppendText(ss.str());
 		txtMain->AppendText("\r\n");
 	}
 }
