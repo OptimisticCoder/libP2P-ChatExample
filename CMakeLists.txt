@@ -15,10 +15,19 @@ SET(PROJECT_BINARY_DIR gtk-build)
 
 SET( wxWidgets_USE_LIBS ON )
 SET( WXWIDGETS_USE_UNICODE ON )
-SET(WXW_FILE_VERSION "31")
-SET(WXW_VERSION "3.1")
+
+# hack to use different versions :/
+if(MSVC)
+    SET(WXW_FILE_VERSION "30")
+    SET(WXW_VERSION "3.0")
+else()
+    SET(WXW_FILE_VERSION "31")
+    SET(WXW_VERSION "3.1")
+endif()
+
 set( wxWidgets_CONFIGURATION mswu )
 set( wxWidgets_USE_STATIC ON )
+set( WXWIDGETS_USE_DEBUG ON )
 set( Boost_USE_STATIC_LIBS ON ) 
 set( Boost_USE_MULTITHREADED ON )
 
@@ -48,29 +57,11 @@ include_directories(
 	${Boost_INCLUDE_DIR}
 )
 
-#add_executable( 
-#	ChatExample
-#	${PROJECT_SOURCE_FILES} 
-#)
-
 link_directories( 
 	"${CMAKE_SOURCE_DIR}/build/libs"
 	${Boost_LIBRARY_DIR}
 	${WXWIDGETS_LINK_DIRECTORIES}
 )
-
-SET( LINK_LIBS 
-	${WXWIDGETS_LIBRARIES} 
-)
-
-message( STATUS "libs: \n\n${LINK_LIBS}\n\n")
-
-#target_link_libraries( 
-#	ChatExample
-#	${LINK_LIBS}
-#	libP2PNetwork
-#	-lboost_system
-#)
 
 if(MSVC)
 	ADD_DEFINITIONS( 
