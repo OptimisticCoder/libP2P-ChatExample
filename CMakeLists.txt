@@ -6,7 +6,7 @@ set(CMAKE_MODULE_PATH
 
 project ( ChatExample )
 
-set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+# set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
 SET(PROJECT_NAME ChatExample)
 FILE( GLOB PROJECT_SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.h" "${CMAKE_SOURCE_DIR}/src/*.cpp" )
@@ -33,13 +33,15 @@ set( Boost_USE_MULTITHREADED ON )
 
 SET(CMAKE_VERBOSE_MAKEFILE TRUE)
 
-find_package( Boost COMPONENTS thread system date_time regex )
+find_package( Boost COMPONENTS thread system date_time regex chrono )
 add_subdirectory( dependencies/libP2PNetwork )
 
 SET(PROJECT_LIBRARIES 
 	debug ${Boost_SYSTEM_LIBRARY_DEBUG} optimized ${Boost_SYSTEM_LIBRARY_RELEASE}
 	debug ${Boost_DATE_TIME_LIBRARY_DEBUG} optimized ${Boost_DATE_TIME_LIBRARY_RELEASE}
 	debug ${Boost_REGEX_LIBRARY_DEBUG} optimized ${Boost_REGEX_LIBRARY_RELEASE}
+	debug ${Boost_THREAD_LIBRARY_DEBUG} optimized ${Boost_THREAD_LIBRARY_RELEASE}
+	debug ${Boost_CHRONO_LIBRARY_DEBUG} optimized ${Boost_CHRONO_LIBRARY_RELEASE}
 	libP2PNetwork
 )
 

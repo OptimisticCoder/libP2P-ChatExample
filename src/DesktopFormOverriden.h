@@ -14,6 +14,8 @@
 #include <wx/sizer.h>
 #include <wx/frame.h>
 #include "p2p_host.hpp"
+#include "p2p_listener.hpp"
+#include <sstream>
 
 class DesktopFormOveridden : public DesktopForm
 {

@@ -11,7 +11,12 @@ DesktopFormOveridden::~DesktopFormOveridden()
 
 void DesktopFormOveridden::Init()
 {
-	const std::string arr[] = { "dnsseed.voodoo.community" };
+	txtMain->BeginTextColour(wxColour(0,90,0,0));
+	txtMain->WriteText("Welcome to ChatExample!\r\n");
+	txtMain->EndTextColour();
+
+
+	const std::string arr[] = { "dnsseed.uape.co.uk" };
 	std::vector<std::string> vec(arr, arr + sizeof(arr) / sizeof(arr[0]));
 
 	P2PNetwork::p2p_host hostManager;
@@ -19,13 +24,20 @@ void DesktopFormOveridden::Init()
 
 	for (std::vector<P2PNetwork::p2p_host>::iterator it = hosts.begin(); it != hosts.end(); ++it)
 	{
-		txtMain->AppendText(it->Ip);
-		txtMain->AppendText(":");
+		txtMain->WriteText(it->Ip);
+
+		txtMain->BeginTextColour(wxColour("grey"));
+		txtMain->WriteText(":");
 
 		std::stringstream ss;
 		ss << it->Port;
 
-		txtMain->AppendText(ss.str());
-		txtMain->AppendText("\r\n");
+		txtMain->WriteText(ss.str());
+		txtMain->EndTextColour();
+		txtMain->WriteText("\r\n");
 	}
+
+	P2PNetwork::p2p_listener listener;
+	listener.Start(6453, "TestName", "TestKey");
+
 }
