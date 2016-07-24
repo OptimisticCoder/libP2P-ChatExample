@@ -19,6 +19,11 @@ void DesktopFormOveridden::Init()
 	const std::string arr[] = { "dnsseed.uape.co.uk" };
 	std::vector<std::string> vec(arr, arr + sizeof(arr) / sizeof(arr[0]));
 
+	boost::asio::io_service io_service;
+
+	P2PNetwork::p2p_listener listener(io_service, 6453);
+	listener.NewConnection.connect(bind(&DesktopFormOveridden::OnNewConnection, this, _1));
+
 	P2PNetwork::p2p_host hostManager;
 	std::vector<P2PNetwork::p2p_host> hosts = hostManager.LoadAll("hosts", vec, 6453);
 
@@ -37,7 +42,14 @@ void DesktopFormOveridden::Init()
 		txtMain->WriteText("\r\n");
 	}
 
-	P2PNetwork::p2p_listener listener;
-	listener.Start(6453, "TestName", "TestKey");
+}
 
+void DesktopFormOveridden::OnNewConnection(int todo)
+{
+	txtMain->WriteText("New connection received!!!\r\n");
+	std::stringstream ss;
+	ss << todo;
+
+	txtMain->WriteText(ss.str());
+	txtMain->WriteText("\r\n");
 }

@@ -16,6 +16,11 @@
 #include "p2p_host.hpp"
 #include "p2p_listener.hpp"
 #include <sstream>
+#include <boost/signal.hpp>
+#include <boost/bind.hpp>
+#include <iostream>
+
+using namespace boost;
 
 class DesktopFormOveridden : public DesktopForm
 {
@@ -26,6 +31,8 @@ public:
 	~DesktopFormOveridden();
 
 	void Init();
+
+	void OnNewConnection(int todo);
 };
 
 #endif 

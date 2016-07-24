@@ -33,7 +33,7 @@ set( Boost_USE_MULTITHREADED ON )
 
 SET(CMAKE_VERBOSE_MAKEFILE TRUE)
 
-find_package( Boost COMPONENTS thread system date_time regex chrono )
+find_package( Boost COMPONENTS thread system date_time regex chrono signals )
 add_subdirectory( dependencies/libP2PNetwork )
 
 SET(PROJECT_LIBRARIES 
@@ -42,6 +42,7 @@ SET(PROJECT_LIBRARIES
 	debug ${Boost_REGEX_LIBRARY_DEBUG} optimized ${Boost_REGEX_LIBRARY_RELEASE}
 	debug ${Boost_THREAD_LIBRARY_DEBUG} optimized ${Boost_THREAD_LIBRARY_RELEASE}
 	debug ${Boost_CHRONO_LIBRARY_DEBUG} optimized ${Boost_CHRONO_LIBRARY_RELEASE}
+	debug ${Boost_SIGNALS_LIBRARY_DEBUG} optimized ${Boost_SIGNALS_LIBRARY_RELEASE}
 	libP2PNetwork
 )
 
