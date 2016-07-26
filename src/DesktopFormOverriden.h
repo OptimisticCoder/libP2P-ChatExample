@@ -16,7 +16,6 @@
 #include "p2p_host.hpp"
 #include "p2p_listener.hpp"
 #include <sstream>
-#include <boost/signal.hpp>
 #include <boost/bind.hpp>
 #include <iostream>
 

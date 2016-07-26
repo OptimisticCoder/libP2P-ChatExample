@@ -33,7 +33,7 @@ set( Boost_USE_MULTITHREADED ON )
 
 SET(CMAKE_VERBOSE_MAKEFILE TRUE)
 
-find_package( Boost COMPONENTS thread system date_time regex chrono signals )
+find_package( Boost COMPONENTS thread system date_time regex chrono )
 add_subdirectory( dependencies/libP2PNetwork )
 
 SET(PROJECT_LIBRARIES 
@@ -73,6 +73,7 @@ if(MSVC)
 	    -D_CRT_NON_CONFORMING_SWPRINTFS=1
 	    -D_SCL_SECURE_NO_WARNINGS=1
 	    -D_UNICODE
+		-D_WIN32_WINNT=0x0501
 	    -DNOPCH
 	)
 
