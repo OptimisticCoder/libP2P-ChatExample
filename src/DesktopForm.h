@@ -16,8 +16,9 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/string.h>
-#include <wx/textctrl.h>
+#include <wx/listbox.h>
 #include <wx/sizer.h>
+#include <wx/textctrl.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -32,6 +33,7 @@ class DesktopForm : public wxFrame
 	
 	protected:
 		wxRichTextCtrl* txtMain;
+		wxListBox* m_listBox1;
 		wxTextCtrl* txtInput;
 	
 	public:
