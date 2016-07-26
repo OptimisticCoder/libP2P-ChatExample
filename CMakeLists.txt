@@ -43,13 +43,14 @@ SET(PROJECT_LIBRARIES
 	debug ${Boost_THREAD_LIBRARY_DEBUG} optimized ${Boost_THREAD_LIBRARY_RELEASE}
 	debug ${Boost_CHRONO_LIBRARY_DEBUG} optimized ${Boost_CHRONO_LIBRARY_RELEASE}
 	debug ${Boost_SIGNALS_LIBRARY_DEBUG} optimized ${Boost_SIGNALS_LIBRARY_RELEASE}
+	${WX_richtextd}
 	libP2PNetwork
 )
 
 INCLUDE (FindwxW)
 INCLUDE (UsewxW)
 
-find_package( wxWidgets COMPONENTS core base )
+find_package( wxWidgets COMPONENTS core base richtext )
 include(${wxWidgets_USE_FILE})
 
 source_group( src FILES ${PROJECT_SOURCE_FILES} )
@@ -63,7 +64,7 @@ include_directories(
 link_directories( 
 	"${CMAKE_SOURCE_DIR}/build/libs"
 	${Boost_LIBRARY_DIR}
-	${WXWIDGETS_LINK_DIRECTORIES}
+	${wxWidgets_LIB_DIR}
 )
 
 if(MSVC)
