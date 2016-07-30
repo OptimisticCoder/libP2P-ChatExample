@@ -15,11 +15,13 @@
 #include <wx/frame.h>
 #include "p2p_host.hpp"
 #include "p2p_listener.hpp"
+#include "p2p_connection.hpp"
 #include <sstream>
 #include <boost/bind.hpp>
 #include <iostream>
 
 using namespace boost;
+using namespace P2PNetwork;
 
 class DesktopFormOveridden : public DesktopForm
 {
