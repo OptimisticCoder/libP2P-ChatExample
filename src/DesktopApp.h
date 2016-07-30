@@ -11,6 +11,7 @@ class DesktopApp : public wxApp
 public:
 	virtual bool OnInit();
 private:
+	
 	wxDECLARE_EVENT_TABLE();
 };
 

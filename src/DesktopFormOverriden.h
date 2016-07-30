@@ -13,6 +13,7 @@
 #include <wx/textctrl.h>
 #include <wx/sizer.h>
 #include <wx/frame.h>
+#include "p2p_manager.hpp"
 #include "p2p_host.hpp"
 #include "p2p_listener.hpp"
 #include "p2p_connection.hpp"
@@ -33,7 +34,11 @@ public:
 
 	void Init();
 
+private:
+	p2p_manager* _manager;
+
 	void OnNewConnection(int todo);
+	void OnLog(std::string msg);
 };
 
 #endif 
