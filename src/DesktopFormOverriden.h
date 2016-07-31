@@ -37,7 +37,7 @@ public:
 private:
 	p2p_manager* _manager;
 
-	void OnNewConnection(int todo);
+	void OnNewConnection(bool isIncoming, p2p_connection::pointer connection);
 	void OnLog(std::string msg);
 };
 

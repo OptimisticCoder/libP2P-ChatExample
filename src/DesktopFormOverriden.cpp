@@ -19,18 +19,26 @@ void DesktopFormOveridden::Init()
 
 	_manager = new p2p_manager();
 	_manager->Log.connect(boost::bind(&DesktopFormOveridden::OnLog, this, _1));
-	_manager->NewConnection.connect(boost::bind(&DesktopFormOveridden::OnNewConnection, this, _1));
+	_manager->NewConnection.connect(boost::bind(&DesktopFormOveridden::OnNewConnection, this, _1, _2));
 	_manager->Run(6453);
 }
 
-void DesktopFormOveridden::OnNewConnection(int todo)
+void DesktopFormOveridden::OnNewConnection(bool isIncoming, p2p_connection::pointer connection)
 {
 	wxMutexGuiEnter();
 
 	txtMain->Freeze();
-	txtMain->WriteText("New connection received!!!\r\n");
+
+	if (isIncoming) {
+		txtMain->WriteText("Incoming connection received from ");
+	}
+	else
+	{
+		txtMain->WriteText("Outgoing connection established to ");
+	}
+
 	std::stringstream ss;
-	ss << todo;
+	ss << connection->Socket().remote_endpoint();
 
 	txtMain->WriteText(ss.str());
 	txtMain->WriteText("\r\n");
