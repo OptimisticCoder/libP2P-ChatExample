@@ -25,7 +25,8 @@ void DesktopFormOveridden::Init()
 
 void DesktopFormOveridden::OnNewConnection(bool isIncoming, p2p_connection::pointer connection)
 {
-	wxMutexGuiEnter();
+	if (!wxIsMainThread())
+		wxMutexGuiEnter();
 
 	txtMain->Freeze();
 
@@ -44,7 +45,9 @@ void DesktopFormOveridden::OnNewConnection(bool isIncoming, p2p_connection::poin
 	txtMain->WriteText("\r\n");
 
 	txtMain->Thaw();
-	wxMutexGuiLeave();
+
+	if (!wxIsMainThread())
+		wxMutexGuiLeave();
 }
 
 void DesktopFormOveridden::OnLog(std::string msg)
@@ -52,11 +55,13 @@ void DesktopFormOveridden::OnLog(std::string msg)
 	std::string txt = msg;
 	txt.append("\r\n");
 
-	wxMutexGuiEnter();
+	if (!wxIsMainThread())
+		wxMutexGuiEnter();
 
 	txtMain->Freeze();
 	txtMain->WriteText(txt);
 	txtMain->Thaw();
 
-	wxMutexGuiLeave();
+	if (!wxIsMainThread())
+		wxMutexGuiLeave();
 }
