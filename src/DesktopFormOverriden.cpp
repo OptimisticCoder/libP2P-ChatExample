@@ -65,3 +65,19 @@ void DesktopFormOveridden::OnLog(std::string msg)
 	if (!wxIsMainThread())
 		wxMutexGuiLeave();
 }
+
+void DesktopFormOveridden::OnDataReceived(p2p_connection::pointer connection, p2p_packet packet)
+{
+	std::string txt = "data received!";
+	txt.append("\r\n");
+
+	if (!wxIsMainThread())
+		wxMutexGuiEnter();
+
+	txtMain->Freeze();
+	txtMain->WriteText(txt);
+	txtMain->Thaw();
+
+	if (!wxIsMainThread())
+		wxMutexGuiLeave();
+}

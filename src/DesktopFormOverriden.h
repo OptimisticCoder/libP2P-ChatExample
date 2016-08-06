@@ -17,6 +17,7 @@
 #include "p2p_host.hpp"
 #include "p2p_listener.hpp"
 #include "p2p_connection.hpp"
+#include "p2p_packet.hpp"
 #include <sstream>
 #include <boost/bind.hpp>
 #include <iostream>
@@ -39,6 +40,7 @@ private:
 
 	void OnNewConnection(bool isIncoming, p2p_connection::pointer connection);
 	void OnLog(std::string msg);
+	void OnDataReceived(p2p_connection::pointer connection, p2p_packet packet);
 };
 
 #endif 
