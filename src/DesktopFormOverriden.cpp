@@ -20,6 +20,7 @@ void DesktopFormOveridden::Init()
 	_manager = new p2p_manager();
 	_manager->Log.connect(boost::bind(&DesktopFormOveridden::OnLog, this, _1));
 	_manager->NewConnection.connect(boost::bind(&DesktopFormOveridden::OnNewConnection, this, _1, _2));
+	_manager->DataReceived.connect(boost::bind(&DesktopFormOveridden::OnDataReceived, this, _1, _2));
 	_manager->Run(6453);
 }
 
