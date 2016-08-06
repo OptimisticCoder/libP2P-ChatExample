@@ -10,12 +10,16 @@
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
-#include <wx/richtext/richtextctrl.h>
+#include <wx/string.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
+#include <wx/menu.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/string.h>
+#include <wx/richtext/richtextctrl.h>
 #include <wx/listbox.h>
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
@@ -32,6 +36,8 @@ class DesktopForm : public wxFrame
 	private:
 	
 	protected:
+		wxMenuBar* m_menubar1;
+		wxMenu* m_menu1;
 		wxRichTextCtrl* txtMain;
 		wxListBox* m_listBox1;
 		wxTextCtrl* txtInput;
