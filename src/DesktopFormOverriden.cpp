@@ -69,7 +69,7 @@ void DesktopFormOveridden::OnLog(std::string msg)
 
 void DesktopFormOveridden::OnDataReceived(p2p_connection::pointer connection, p2p_packet packet)
 {
-	std::string txt = "data received!";
+	std::string txt(packet.body(), packet.body() + packet.body_length());
 	txt.append("\r\n");
 
 	if (!wxIsMainThread())
