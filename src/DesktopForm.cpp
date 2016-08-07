@@ -21,9 +21,9 @@ DesktopForm::DesktopForm( wxWindow* parent, wxWindowID id, const wxString& title
 	
 	m_menu1->AppendSeparator();
 	
-	wxMenuItem* m_menuItem2;
-	m_menuItem2 = new wxMenuItem( m_menu1, wxID_ANY, wxString( wxT("Exit") ) , wxEmptyString, wxITEM_NORMAL );
-	m_menu1->Append( m_menuItem2 );
+	wxMenuItem* menuExit;
+	menuExit = new wxMenuItem( m_menu1, wxID_ANY, wxString( wxT("Exit") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menu1->Append( menuExit );
 	
 	m_menubar1->Append( m_menu1, wxT("File") ); 
 	

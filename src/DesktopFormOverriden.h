@@ -38,9 +38,10 @@ public:
 private:
 	p2p_manager* _manager;
 
-	void OnNewConnection(bool isIncoming, p2p_connection::pointer connection);
+	void OnNodeConnected(bool isIncoming, p2p_connection::pointer connection, boost::uuids::uuid remoteId);
 	void OnLog(std::string msg);
 	void OnDataReceived(p2p_connection::pointer connection, p2p_packet packet);
+	void OnNodeDisconnected(boost::uuids::uuid remoteId);
 
 	void writeToRichText(std::string txt);
 };
