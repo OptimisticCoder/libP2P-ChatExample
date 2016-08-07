@@ -26,45 +26,27 @@ void DesktopFormOveridden::Init()
 
 void DesktopFormOveridden::OnNewConnection(bool isIncoming, p2p_connection::pointer connection)
 {
-	if (!wxIsMainThread())
-		wxMutexGuiEnter();
-
-	txtMain->Freeze();
-
+	std::string txt;
 	if (isIncoming) {
-		txtMain->WriteText("Incoming connection received from ");
+		txt = "Incoming connection received from ";
 	}
 	else
 	{
-		txtMain->WriteText("Outgoing connection established to ");
+		txt = "Outgoing connection established to ";
 	}
 
 	std::stringstream ss;
 	ss << connection->Socket().remote_endpoint();
 
-	txtMain->WriteText(ss.str());
-	txtMain->WriteText("\r\n");
+	txt.append(ss.str());
 
-	txtMain->Thaw();
-
-	if (!wxIsMainThread())
-		wxMutexGuiLeave();
+	writeToRichText(txt);
 }
 
 void DesktopFormOveridden::OnLog(std::string msg)
 {
 	std::string txt = msg;
-	txt.append("\r\n");
-
-	if (!wxIsMainThread())
-		wxMutexGuiEnter();
-
-	txtMain->Freeze();
-	txtMain->WriteText(txt);
-	txtMain->Thaw();
-
-	if (!wxIsMainThread())
-		wxMutexGuiLeave();
+	writeToRichText(txt);
 }
 
 void DesktopFormOveridden::OnDataReceived(p2p_connection::pointer connection, p2p_packet packet)
@@ -78,15 +60,34 @@ void DesktopFormOveridden::OnDataReceived(p2p_connection::pointer connection, p2
 	std::string body(packet.body(), packet.body() + packet.body_length());
 	txt.append(body);
 
-	txt.append("\r\n");
+	writeToRichText(txt);
+}
 
+void DesktopFormOveridden::writeToRichText(std::string txt)
+{
 	if (!wxIsMainThread())
 		wxMutexGuiEnter();
 
+	//txtMain->SetInsertionPointEnd();
+
 	txtMain->Freeze();
+
+	txtMain->SetCaretPosition(txtMain->GetLastPosition() - 1);
+	size_t before_number_of_lines = txtMain->GetNumberOfLines();
+	//txtMain->SetInsertionPointEnd();
+
+
+
 	txtMain->WriteText(txt);
+	txtMain->Newline();
+
+
+	size_t after_number_of_lines = txtMain->GetNumberOfLines();
 	txtMain->Thaw();
+
+	txtMain->ScrollLines(txtMain->GetNumberOfLines());
 
 	if (!wxIsMainThread())
 		wxMutexGuiLeave();
+
 }

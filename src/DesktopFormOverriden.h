@@ -41,6 +41,8 @@ private:
 	void OnNewConnection(bool isIncoming, p2p_connection::pointer connection);
 	void OnLog(std::string msg);
 	void OnDataReceived(p2p_connection::pointer connection, p2p_packet packet);
+
+	void writeToRichText(std::string txt);
 };
 
 #endif 
